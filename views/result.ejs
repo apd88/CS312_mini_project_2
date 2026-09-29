@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= card.name %> | Commander Generator</title>
+  <link rel="stylesheet" href="/style.css">
+
+
+</head>
+<body>
+  <main>
+    <h1><%= card.name %></h1>
+
+    <p><%= card.type_line %></p>
+
+    <img src="<%= imageUrl %>" alt="Magic card: <%= card.name %>" class="card-image">
+    <div class="buttons">
+
+      <!-- if users want to reroll, just send the same colors again to generate a different one -->
+      <form action="/card" method="POST">
+        <% colors.forEach(function (c) { %>
+          <input type="hidden" name="colors" value="<%= c %>">
+        <% }); %>
+
+
+        <button type="submit">Draw another</button>
+      </form>
+
+
+
+      <!-- to send back to main screen-->
+      <a href="/" class="button-link">Pick new colors</a>
+    </div>
+  </main>
+</body>
+</html>

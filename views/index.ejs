@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commander Generator</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main>
+    <h1>Random Generator for MTG Commanders</h1>
+    <p>Choose the colors you want. It will generate a random legendary creature for you.</p>
+
+
+<!--since the scryfall api uses specific color codes we have to make it match... i.e blue is U-->
+    <form action="/card" method="POST">
+      <% const colorList = [
+        { code: "w", name: "White" },
+        { code: "u", name: "Blue" },
+        { code: "b", name: "Black" },
+        { code: "r", name: "Red" },
+        { code: "g", name: "Green" },
+        { code: "c", name: "Colorless" }
+      ]; %>
+
+      <% colorList.forEach(function (color) { %>
+        <label class="color-option">
+          <input type="checkbox" name="colors" value="<%= color.code %>">
+          <%= color.name %>
+        </label>
+      <% }); %>
+
+      <button type="submit">Find commander</button>
+    </form>
+  </main>
+</body>
+</html>
